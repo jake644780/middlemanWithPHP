@@ -47,24 +47,34 @@
         $email    = @$_POST['email'];
         $password = @$_POST['password'];
         $description = @$_POST['description'];
-        $joinDate = date("Y-m-d");
+        $date = date("Y-m-d");
 
         //password validation
         $password_validator = passVal($password);
-        if ($password_validator != 1){
-            jsLog(passProbsToStr($password_validator)); //frontend design this
-        } else{    
+        
+        if ($password_validator){
+            $dataKeys = [
+                "id" => "",
+                "username" => $username,
+                "email" => $email,
+                "password" => $password,
+                "description" => $description,
+                "date" => $date
+            ];
             //checking if user is already present in db
             $isUserInDb_QUERY = QselectAllByUsername($username);
             $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
 
             if ($isUserInDB_RESULT->num_rows == 0){
-                $insertUser_QUERY = "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
+                $insertUser_QUERY =
                 $insertUser_RESULT = $conn->query($insertUser_QUERY);
                 if ($insertUser_RESULT){
                     jsLog("successfully registered user"); //frontend design this
                 }
             }
+
+        }else{
+            jsLog(passProbsToStr($password_validator)); //frontend design this
         }
             
     }
