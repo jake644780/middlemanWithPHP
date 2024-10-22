@@ -50,7 +50,7 @@
         $date = date("Y-m-d");
 
         //password validation
-        $password_validator = passVal($password);
+        $password_validator = checkPass($password);
         
         if ($password_validator){
             $dataKeys = [
@@ -74,7 +74,7 @@
             }
 
         }else{
-            jsLog(passProbsToStr($password_validator)); //frontend design this
+            jsLog(getPassErrs($password_validator)); //frontend design this
         }
             
     }

@@ -1,6 +1,8 @@
 <?php
 
-function jsLog($message){echo "<script>console.log('".$message."');</script>";}
+function jsLog($message){
+    echo "<script>console.log('$message');</script>";
+}
 
 
 ?>

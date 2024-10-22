@@ -1,8 +1,8 @@
 <?php
 
-function QselectAllByUsername ($username){return "SELECT * FROM users WHERE username = '$username';";}
-
-
+function QselectAllByUsername ($username){
+    return "SELECT * FROM users WHERE username = '$username';";
+}
 // "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
 function QinsertWithHash ($tableName, $data){
     $q = "INSERT INTO $tableName (";
@@ -14,12 +14,16 @@ function QinsertWithHash ($tableName, $data){
     $q .= ") VALUES (";
     //inserting values
     foreach ($data as $key => $value){
-        if (is_string($value) || $value instanceof DateTime) $q .="'" . $value . "',";
+        if (is_string($value) || $value instanceof DateTime){
+            $q .="'" . $value . "',";
+        }
         else if (is_bool($value)){
             $boolValue = $value ? 1 : 0;
             $q .= $value . ","; 
         }
-        else $q .= $value . ",";
+        else {
+            $q .= $value . ",";
+        }
     }
     $q = substr($q, 0, -1);
     $q .= ");";
