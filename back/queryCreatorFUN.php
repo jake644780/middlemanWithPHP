@@ -15,6 +15,10 @@ function QinsertWithHash ($tableName, $data){
     //inserting values
     foreach ($data as $key => $value){
         if (is_string($value) || $value instanceof DateTime) $q .="'" . $value . "',";
+        else if (is_bool($value)){
+            $boolValue = $value ? 1 : 0;
+            $q .= $value . ","; 
+        }
         else $q .= $value . ",";
     }
     $q = substr($q, 0, -1);
