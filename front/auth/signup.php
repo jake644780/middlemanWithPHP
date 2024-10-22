@@ -37,9 +37,11 @@
 <?php
     if (isset($_POST['submit'])){
         //include paths        
-        include("../../back/authFUN.php");
-        include("../../back/connect.php");
-        
+        require("../../back/authFUN.php");
+        require("../../back/connect.php");
+        require("../../back/jsFUN.php");
+        require("../../back/queryCreatorFUN.php");
+
         //vars grabbed from form
         $username = @$_POST['username'];
         $email    = @$_POST['email'];
@@ -50,17 +52,17 @@
         //password validation
         $password_validator = passVal($password);
         if ($password_validator != 1){
-            echo passProbsToStr($password_validator);
+            jsLog(passProbsToStr($password_validator)); //frontend design this
         } else{    
             //checking if user is already present in db
-            $isUserInDb_QUERY = "SELECT * FROM users WHERE username = '".$username."';";
+            $isUserInDb_QUERY = QselectAllByUsername($username);
             $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
 
             if ($isUserInDB_RESULT->num_rows == 0){
                 $insertUser_QUERY = "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
                 $insertUser_RESULT = $conn->query($insertUser_QUERY);
                 if ($insertUser_RESULT){
-                    echo "<script>console.log('');</script>";
+                    jsLog("successfully registered user"); //frontend design this
                 }
             }
         }
