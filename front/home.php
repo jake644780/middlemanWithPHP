@@ -5,27 +5,24 @@
 <body>
 
 <?php
+    include("../back/connect.php");
+?>
 
-    if (require("../back/connect.php")){
-        echo "<script>console.log('connected successfully');</script>";
-    }
-        ?>
-  <div class="navbar">
-            <a href="#">
-                <button class="nav-b">home</button></a>
-            <a href="">
-                <button class="nav-b">shop</button></a>
-            <a href="">
-                <button class="nav-b">place of searchbar</button></a>
-            <a href="">
-                <button class="nav-b">icon</button></a>
-            <a href="">
-                <button class="nav-b">cart</button></a>
-            <a href="../front/auth/login.php">
-                <button class="nav-b">login/logout</button></a>
-            <a href="../front/auth/signup.php">
-                <button class="nav-b">signup/myaccount</button></a>
-            
+    <div class="navbar">
+        <a href="#">
+            <button class="nav-b">home</button></a>
+        <a href="">
+            <button class="nav-b">shop</button></a>
+        <a href="">
+            <button class="nav-b">place of searchbar</button></a>
+        <a href="">
+            <button class="nav-b">icon</button></a>
+        <a href="">
+            <button class="nav-b">cart</button></a>
+        <a href="../front/auth/login.php">
+            <button class="nav-b">login/logout</button></a>
+        <a href="../front/auth/signup.php">
+            <button class="nav-b">signup/myaccount</button></a>
             
             <style>
                     .navbar{
