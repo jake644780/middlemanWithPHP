@@ -45,26 +45,42 @@
         //include paths        
         include("../../back/authFUN.php");
         include("../../back/connect.php");
+        
         //vars grabbed from form
         $username = @$_POST['username'];
         $email    = @$_POST['email'];
         $password = @$_POST['password'];
         $description = @$_POST['description'];
         $joinDate = date("Y-m-d");
+
         //password validation
         $password_validator = passVal($password);
         if ($password_validator != 1){
+            /*  
+                passVal returns an array or 1 depending on the password's value
+                the array holds 3 bool expressions:
+                length between 8 and 40
+                there must be atleast 1 capital letter
+                there must be atleast 1 number                
+            */
+            $passwordError = "password match these expectations:\n";
+            $i = 0;
+            if ($password_validator[$i] == 0) $passwordError .= "\tmust have a length between 8 and 40\n";
+            $i++; 
+            if ($password_validator[$i] == 0) $passwordError .= "\tmust have atleast 1 capital letter\n";
+            $i++;
+            if ($password_validator[$i] == 0) $passwordError .= "\tmust have atleast 1 numerical";
+            echo $passwordError;
+        }
+        
+        //checking if user is already present in db
+        $isUserInDb_QUERY = "SELECT * FROM users WHERE username = '".$username."';";
+        $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
             
-        }else {
-            //checking if user is already present in db
-            $isUserInDb_QUERY = "SELECT * FROM users WHERE username = '".$username."';";
-            $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
-            
-            if ($isUserInDB_RESULT->num_rows == 0){
-                $insertUser_QUERY = "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
-                try{$insertUser_RESULT = $conn->query($insertUser_QUERY);} catch (Exception $e){
-                    echo "Caught exception: \n\n\n\n\n" . $e->getMessage();
-                }
+        if ($isUserInDB_RESULT->num_rows == 0){
+            $insertUser_QUERY = "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
+            try{$insertUser_RESULT = $conn->query($insertUser_QUERY);} catch (Exception $e){
+                echo "Caught exception: \n\n\n\n\n" . $e->getMessage();
             }
         }
             
