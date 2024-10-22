@@ -55,11 +55,12 @@
             //checking if user is already present in db
             $isUserInDb_QUERY = "SELECT * FROM users WHERE username = '".$username."';";
             $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
-                
+
             if ($isUserInDB_RESULT->num_rows == 0){
                 $insertUser_QUERY = "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
-                try{$insertUser_RESULT = $conn->query($insertUser_QUERY);} catch (Exception $e){
-                    echo "Caught exception: \n\n\n\n\n" . $e->getMessage();
+                $insertUser_RESULT = $conn->query($insertUser_QUERY);
+                if ($insertUser_RESULT){
+                    echo "<script>console.log('');</script>";
                 }
             }
         }
