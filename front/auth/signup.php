@@ -53,7 +53,7 @@
         $password_validator = checkPass($password);
         
         if ($password_validator){
-            $dataKeys = [
+            $data = [
                 "id" => "",
                 "username" => $username,
                 "email" => $email,
@@ -66,7 +66,7 @@
             $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
 
             if ($isUserInDB_RESULT->num_rows == 0){
-                $insertUser_QUERY =
+                $insertUser_QUERY = QinsertWithHash("users", $data);
                 $insertUser_RESULT = $conn->query($insertUser_QUERY);
                 if ($insertUser_RESULT){
                     jsLog("successfully registered user"); //frontend design this
