@@ -26,6 +26,7 @@
             <a href="../front/auth/signup.php">
                 <button class="nav-b">signup/myaccount</button></a>
             
+            
             <style>
                     .navbar{
                         display: grid;
