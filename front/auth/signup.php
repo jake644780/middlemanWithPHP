@@ -1,9 +1,3 @@
-<?php
-        $join = date("Y-M-D");
-    echo $join
-
-?>
-
 <html>
 <head>
     <title>sign up to middleman</title>
@@ -67,7 +61,8 @@
                 try{$insertUser_RESULT = $conn->query($insertUser_QUERY);} catch (Exception $e){
                     echo "Caught exception: \n\n\n\n\n" . $e->getMessage();
                 }
-            }}
+            }
+        }
             
     }
 ?>
