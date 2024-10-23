@@ -41,37 +41,35 @@
         require("../../back/connect.php");
         require("../../back/jsFUN.php");
         require("../../back/queryCreatorFUN.php");
-
-        $password = @$_POST['password'];
-
+        //grabbing data from form
+        $data = [
+            "id"          => "",
+            "username"    => @$_POST['username'],
+            "email"       => @$_POST['email'],
+            "password"    => @$_POST['password'],
+            "description" => @$_POST['description'],
+            "date"        => date("Y-m-d")
+        ];
         //password validation
-        $password_validator = checkPass($password);
+        $password_validator = checkPass($data["password"]);
         
-        if ($password_validator){
-            $data = [
-                "id" => "",
-                "username" => @$_POST['username'],
-                "email" => @$_POST['email'],
-                "password" => $password,
-                "description" => @$_POST['description'],
-                "date" => date("Y-m-d")
-            ];
+        if ($password_validator != 1){
+            jsLog(getPassErrs($password_validator)); //frontend this
+        }else{
+            
             //checking if user is already present in db
             $isUserInDB_RESULT = $conn->query(QselectAllByUsername($data["username"]));
 
-            if ($isUserInDB_RESULT->num_rows == 0){
-                $insertUser_RESULT = $conn->query(QinsertWithHash("users", $data));
-                if ($insertUser_RESULT){
-                    jsLog("successfully registered user"); //frontend design this
-                }
+            if ($isUserInDB_RESULT->num_rows != 0){
+                jsLog("user with this username already exists"); //frontend this
             }else{
-                jsLog("user with this username already exists"); //frontend design this
-            }
+                $insertUser_RESULT = $conn->query(QinsertWithHash("users", $data));
 
-        }else{
-            jsLog(getPassErrs($password_validator)); //frontend design this
+                if ($insertUser_RESULT){
+                    jsLog("successfully registered user"); //frontend this
+                }
+            }
         }
-            
     }
 ?>
 </html>
