@@ -55,6 +55,7 @@
             "description" => @$_POST['description'],
             "date"        => date("Y-m-d")
         ];
+
         //password validation
         $password_validator = checkPass($data["password"]);
         
@@ -63,22 +64,32 @@
         }else{
             if ($data["password"] != @$_POST["repass"]){
                jsLog("password does not match!"); // frontend this
-            } else{
+            }else{
                  //checking if user is already present in db
                  $isUserInDB_RESULT = $conn->query(QselectAllByUsername($data["username"]));
 
                  if ($isUserInDB_RESULT->num_rows != 0){
-                     jsLog("user with this username already exists"); //frontend this
+                    jsLog("user with this username already exists"); //frontend this
                  }else{
                      $insertUser_RESULT = $conn->query(QinsertWithHash("users", $data));
  
                      if ($insertUser_RESULT){
-                         jsLog("successfully registered user"); //frontend this
+                        jsLog("successfully registered user"); //frontend this
+
                     }
                 }
             }
         }
     }
+
+/*
+TODO:
+-sql injects
+-frontend
+-flushing 
+-session start + redirect to home page
+*/
+
 ?>
 </html>
 
