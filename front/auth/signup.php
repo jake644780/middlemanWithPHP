@@ -36,7 +36,7 @@
 
 <?php
     if (isset($_POST['submit'])){
-        //include paths        
+        //require paths        
         require("../../back/authFUN.php");
         require("../../back/connect.php");
         require("../../back/jsFUN.php");

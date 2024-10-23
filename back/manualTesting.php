@@ -1,7 +1,13 @@
 <?php
-require("jsFUN.php");
-require("authFUN.php");
-require("queryCreatorFUN.php");
+
+require("extensionsFUN.php");
+requireMoreFromOne("", [
+    "authFUN.php",
+    "connect.php",
+    "jsFUN.php",
+    "dom.php",
+    "queryCreatorFUN.php"
+]);
 
 jsLog("i want to die"); //works
 
