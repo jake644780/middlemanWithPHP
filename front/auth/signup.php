@@ -42,12 +42,7 @@
         require("../../back/jsFUN.php");
         require("../../back/queryCreatorFUN.php");
 
-        //vars grabbed from form
-        $username = @$_POST['username'];
-        $email    = @$_POST['email'];
         $password = @$_POST['password'];
-        $description = @$_POST['description'];
-        $date = date("Y-m-d");
 
         //password validation
         $password_validator = checkPass($password);
@@ -55,22 +50,22 @@
         if ($password_validator){
             $data = [
                 "id" => "",
-                "username" => $username,
-                "email" => $email,
+                "username" => @$_POST['username'],
+                "email" => @$_POST['email'],
                 "password" => $password,
-                "description" => $description,
-                "date" => $date
+                "description" => @$_POST['description'],
+                "date" => date("Y-m-d")
             ];
             //checking if user is already present in db
-            $isUserInDb_QUERY = QselectAllByUsername($username);
-            $isUserInDB_RESULT = $conn->query($isUserInDb_QUERY);
+            $isUserInDB_RESULT = $conn->query(QselectAllByUsername($data["username"]));
 
             if ($isUserInDB_RESULT->num_rows == 0){
-                $insertUser_QUERY = QinsertWithHash("users", $data);
-                $insertUser_RESULT = $conn->query($insertUser_QUERY);
+                $insertUser_RESULT = $conn->query(QinsertWithHash("users", $data));
                 if ($insertUser_RESULT){
                     jsLog("successfully registered user"); //frontend design this
                 }
+            }else{
+                jsLog("user with this username already exists"); //frontend design this
             }
 
         }else{
