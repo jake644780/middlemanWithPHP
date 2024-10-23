@@ -37,10 +37,15 @@
 <?php
     if (isset($_POST['submit'])){
         //require paths        
-        require("../../back/authFUN.php");
-        require("../../back/connect.php");
-        require("../../back/jsFUN.php");
-        require("../../back/queryCreatorFUN.php");
+        $extensionsPATH = "../../back/";
+        require($extensionsPATH . "smartReqFUN.php");
+        requireMoreFromOne($extensionsPATH, [
+            "authFUN.php",
+            "connect.php",
+            "jsFUN.php",
+            "queryCreatorFUN.php"
+        ]);
+
         //grabbing data from form
         $data = [
             "id"          => "",
@@ -54,7 +59,7 @@
         $password_validator = checkPass($data["password"]);
         
         if ($password_validator != 1){
-            jsLog(getPassErrs($password_validator)); //frontend this
+            echo (getPassErrs($password_validator)); //frontend this
         }else{
             if ($data["password"] != @$_POST["repass"]){
                jsLog("password does not match!"); // frontend this
@@ -76,3 +81,5 @@
     }
 ?>
 </html>
+
+

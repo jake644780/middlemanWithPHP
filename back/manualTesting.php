@@ -1,6 +1,6 @@
 <?php
 
-require("extensionsFUN.php");
+require("smartReqFUN.php");
 requireMoreFromOne("", [
     "authFUN.php",
     "connect.php",
