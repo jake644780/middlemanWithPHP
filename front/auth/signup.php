@@ -59,7 +59,7 @@
         $password_validator = checkPass($data["password"]);
         
         if ($password_validator != 1){
-            echo (getPassErrs($password_validator)); //frontend this
+            jsLog(getPassErrs($password_validator)); //frontend this
         }else{
             if ($data["password"] != @$_POST["repass"]){
                jsLog("password does not match!"); // frontend this
@@ -74,8 +74,8 @@
  
                      if ($insertUser_RESULT){
                          jsLog("successfully registered user"); //frontend this
-                     }
-                 }
+                    }
+                }
             }
         }
     }
