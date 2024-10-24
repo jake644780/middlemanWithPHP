@@ -55,5 +55,4 @@ $data = [
 
 echo QinsertWithHash("users", $data);
 
-
 ?>

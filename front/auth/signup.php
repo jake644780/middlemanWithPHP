@@ -75,6 +75,7 @@
  
                      if ($insertUser_RESULT){
                         jsLog("successfully registered user"); //frontend this
+                        header("home.php");
 
                     }
                 }
