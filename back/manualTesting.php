@@ -3,7 +3,7 @@
 require("smartReqFUN.php");
 requireMoreFromOne("", [
     "authFUN.php",
-    "connect.php",
+    "conn.php",
     "jsFUN.php",
     "dom.php",
     "queryCreatorFUN.php"

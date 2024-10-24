@@ -41,7 +41,7 @@
         require($extensionsPATH . "smartReqFUN.php");
         requireMoreFromOne($extensionsPATH, [
             "authFUN.php",
-            "connect.php",
+            "conn.php",
             "jsFUN.php",
             "queryCreatorFUN.php"
         ]);
