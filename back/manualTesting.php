@@ -1,13 +1,14 @@
 <?php
 
 require("smartReqFUN.php");
+require("connect.php");
 requireMoreFromOne("", [
     "authFUN.php",
-    "conn.php",
     "jsFUN.php",
     "dom.php",
     "queryCreatorFUN.php"
 ]);
+
 
 jsLog("i want to die"); //works
 
@@ -54,5 +55,7 @@ $data = [
 ];
 
 echo QinsertWithHash("users", $data);
+
+
 
 ?>
