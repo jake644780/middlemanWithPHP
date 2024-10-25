@@ -26,10 +26,7 @@ echo '<div class="navbar">';
         echo '<a href="auth/signup.php">
             <button class="nav-b">sign up</button></a>
         ';
-    }
-
-    
-            
+    }   
     echo '</div>';
 
 
