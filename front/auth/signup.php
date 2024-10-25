@@ -12,7 +12,7 @@
     <ul><li>between the length of 8 and 40</li><li>atleast 1 number</li><li>atleast 1 uppercase letter</li></ul><br>
     tell us a bit about yourself: <br>
     <textarea name="description" id="" cols="30" rows="8" placeholder="type something about you here..."></textarea><br>
-    <input type="submit" name="submit" value="submit">
+    <input type="submit" name="submit" value="sign up">
     </form>
 </body>
 <style>
@@ -89,13 +89,6 @@
         }
     }
 
-/*
-TODO:
--sql injects
--frontend
--flushing 
--session start + redirect to home page
-*/
 
 ?>
 </html>
