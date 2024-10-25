@@ -16,4 +16,12 @@ function getPassErrs($errors){ //FIX THIS WITH JSLOGGING!!!!!!
     
 }
 
+function sessionCheck(){
+    if (@$_SESSION["username"]){
+        jsLog("logged in!");
+    }else{
+        jsLog("not logged in!");
+    }
+}
+
 ?>

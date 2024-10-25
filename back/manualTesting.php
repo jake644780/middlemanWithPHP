@@ -9,7 +9,6 @@ requireMoreFromOne("", [
     "queryCreatorFUN.php"
 ]);
 
-
 jsLog("i want to die"); //works
 
 

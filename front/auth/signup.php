@@ -35,13 +35,16 @@
 </style>
 
 <?php
+
+    session_start();
+
     if (isset($_POST['submit'])){
         //require paths        
         $extensionsPATH = "../../back/";
         require($extensionsPATH . "smartReqFUN.php");
+        require($extensionsPATH . "connect.php");
         requireMoreFromOne($extensionsPATH, [
             "authFUN.php",
-            "connect.php",
             "jsFUN.php",
             "queryCreatorFUN.php"
         ]);
@@ -75,7 +78,10 @@
  
                      if ($insertUser_RESULT){
                         jsLog("successfully registered user"); //frontend this
-                        header("home.php");
+                        
+                        $_SESSION["username"] = $data["username"];
+                        header("location: ../home.php");
+                        
 
                     }
                 }
