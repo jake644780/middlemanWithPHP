@@ -25,7 +25,10 @@
 if (isset($_POST['submit'])){
     $user = @$_POST['userOrEmail'];
     $password = @$_POST['password'];
-    //do this!!!!
+    /*TODO regex, finish login
+
+
+    */
 }
 
 ?>

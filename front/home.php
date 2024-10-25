@@ -19,6 +19,8 @@
     ]);
 
     require("navbar.php");
+
+    //TODO frontend
 ?>
 
    
