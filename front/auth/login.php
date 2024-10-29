@@ -22,16 +22,12 @@
 
 <?php
 
-$requirePATH = "../../grasPHP/";
+$extPATH = "../../grasPHP/";
 require("smartReqFUN.php");
-requireMoreFromOne("../../grasPHP/", [
-    "authFUN.php",
-    "connect.php",
-    "jsFUN.php",
-    "queryCreatorFUN.php"
-]);
+requireALL($extPATH);
 
 if (isset($_POST['submit'])){
+    session_start();
     $user = @$_POST['userOrEmail'];
     $password = @$_POST['password'];
 

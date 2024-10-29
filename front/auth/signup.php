@@ -1,3 +1,11 @@
+<?php
+//require paths        
+$extPATH = "../../grasPHP/";
+require($extPATH . "smartReqFUN.php");
+require("../../connect.php");
+requireALL($extPATH);
+?>
+
 <html>
 <head>
     <title>sign up to middleman</title>
@@ -39,16 +47,6 @@
     session_start();
 
     if (isset($_POST['submit'])){
-        //require paths        
-        $extensionsPATH = "../../grasPHP/";
-        require($extensionsPATH . "smartReqFUN.php");
-        require($extensionsPATH . "connect.php");
-        requireMoreFromOne($extensionsPATH, [
-            "authFUN.php",
-            "jsFUN.php",
-            "queryCreatorFUN.php"
-        ]);
-
         //grabbing data from form
         $data = [
             "id"          => "",
