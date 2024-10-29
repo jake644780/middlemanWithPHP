@@ -22,13 +22,24 @@
 
 <?php
 
+$requirePATH = "../../grasPHP/";
+require("smartReqFUN.php");
+requireMoreFromOne("../../grasPHP/", [
+    "authFUN.php",
+    "connect.php",
+    "jsFUN.php",
+    "queryCreatorFUN.php"
+]);
+
 if (isset($_POST['submit'])){
     $user = @$_POST['userOrEmail'];
     $password = @$_POST['password'];
+
+    if ()
     /*TODO regex, finish login
 
 
     */
 }
 
-?>
+?> 

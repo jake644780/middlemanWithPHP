@@ -40,7 +40,7 @@
 
     if (isset($_POST['submit'])){
         //require paths        
-        $extensionsPATH = "../../back/";
+        $extensionsPATH = "../../grasPHP/";
         require($extensionsPATH . "smartReqFUN.php");
         require($extensionsPATH . "connect.php");
         requireMoreFromOne($extensionsPATH, [

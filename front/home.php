@@ -7,18 +7,12 @@
 <?php
 
     session_start();
-    $extensionPATH = "../back/";
-    include($extensionPATH . "connect.php");
+    $extensionPATH = "../grasPHP/";
+    include("../connect.php");
     require($extensionPATH . "smartReqFUN.php");
-    requireMoreFromOne($extensionPATH, [
-        "authFUN.php",
-        "jsFUN.php",
-        "connect.php",
-        "queryCreatorFUN.php",
-        "domFUN.php"
-    ]);
+    requireALL($extensionPATH);
 
-    require("navbar.php");
+    include("navbar.php");
 
     //TODO frontend
 ?>
