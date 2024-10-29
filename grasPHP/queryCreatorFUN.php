@@ -3,7 +3,10 @@
 function QselectAllByUsername ($username){
     return "SELECT * FROM users WHERE username = '$username';";
 }
-// "INSERT INTO users (id, username, password, description, date) VALUES ('', '".$username."', '".$password."', '".$description."', '".$joinDate."' )";
+
+function QselectAllByEmail ($email){
+    return "SELECT * FROM users WHERE email = '$email';";
+}
 function QinsertWithHash ($tableName, $data){
     $q = "INSERT INTO $tableName (";
     //inserting keys

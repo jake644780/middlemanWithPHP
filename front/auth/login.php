@@ -28,14 +28,31 @@ requireALL($extPATH);
 
 if (isset($_POST['submit'])){
     session_start();
-    $user = @$_POST['userOrEmail'];
+    $userOrEmail = @$_POST['userOrEmail'];
     $password = @$_POST['password'];
+    $foundWith = "none";
+    //looking for email/username in database
+    if (validateEmail($userOrEmail)){
+        $loginRESULT =$conn ->query( QselectAllByEmail($userOrEmail));
+        if ($loginRESULT == 1){
+            jsLog("found with email");
+            $foundWith = "email";
+        }else{
+            jsLog("not found this email address");
+        }
+    }else{
+        $loginRESULT =$conn ->query( QselectAllByUsername($userOrEmail));
+        if ($loginRESULT == 1){
+            jsLog("found with username");
+            $foundWith = "username";
+        }else{
+            jsLog("not found with username");
+        }
+    }
 
-    if ()
-    /*TODO regex, finish login
+    //TODO DO THIS CORRECTLY!!!!!!!!!!!!!!!!!!;;;
 
-
-    */
+    
 }
 
 ?> 
