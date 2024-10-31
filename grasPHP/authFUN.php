@@ -9,7 +9,7 @@ function checkPass($password) {
 }
 
 function getPassErrs($errors){ //FIX THIS WITH JSLOGGING!!!!!!
-    $passwordError = "password has to match these expectations:\n";
+    $passwordError = "password does not match these expectations:\n";
     $expectations = ["must have a length between 8 and 40","must have atleast 1 capital letter","must have atleast 1 numerical"];
     for ($i = 0; $i < count($expectations); $i++) if ($errors[$i] == 0) $passwordError .= "\n" . $i + 1 . "." . $expectations[$i];
     return $passwordError;
@@ -17,8 +17,8 @@ function getPassErrs($errors){ //FIX THIS WITH JSLOGGING!!!!!!
 }
 
 function sessionCheck(){
-    if (@$_SESSION["username"]){
-        jsLog("logged in!");
+    if (@$_SESSION["id"]){
+        jsLog("logged in!");    
     }else{
         jsLog("not logged in!");
     }

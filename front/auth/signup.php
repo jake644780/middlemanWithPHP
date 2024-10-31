@@ -59,32 +59,43 @@ requireALL($extPATH);
 
         //password validation
         $password_validator = checkPass($data["password"]);
-        
-        if ($password_validator != 1){
-            jsLog(getPassErrs($password_validator)); //frontend this
+        $email_validator = validateEmail($data['email']);
+
+        if ($email_validator != 1){
+            jsLog("invalid email address");
         }else{
-            if ($data["password"] != @$_POST["repass"]){
-               jsLog("password does not match!"); // frontend this
+            
+            if ($password_validator != 1){
+                jsLog(getPassErrs($password_validator)); //frontend this
             }else{
-                 //checking if user is already present in db
-                 $isUserInDB_RESULT = $conn->query(QselectAllByUsername($data["username"]));
-
-                 if ($isUserInDB_RESULT->num_rows != 0){
-                    jsLog("user with this username already exists"); //frontend this
-                 }else{
-                     $insertUser_RESULT = $conn->query(QinsertWithHash("users", $data));
- 
-                     if ($insertUser_RESULT){
-                        jsLog("successfully registered user"); //frontend this
-                        
-                        $_SESSION["username"] = $data["username"];
-                        header("location: ../home.php");
-                        
-
+                if ($data["password"] != @$_POST["repass"]){
+                   jsLog("password does not match!"); // frontend this
+                }else{
+                    //checking if user is already present in db
+                    $isUserInDB_RESULT = $conn->query(QselectAllByUsername($data["username"]));
+    
+                    if ($isUserInDB_RESULT->num_rows != 0){
+                        jsLog("user with this username already exists"); //frontend this
+                    }else{
+                        $insertUser_RESULT = $conn->query(QinsertWithHash("users", $data));
+     
+                        if ($insertUser_RESULT){
+                            jsLog("successfully registered user"); //frontend this
+                            //getting id of user just inserted
+                            $selectInsertedUser = $conn -> query(QselectAllByUsername($data["username"]));
+    
+                            if ($selectInsertedUser->num_rows == 1) {
+                                while($row = $selectInsertedUser->fetch_assoc()) { 
+                                    $_SESSION["id"] = $row["id"]; 
+                                    header("location: ../home.php");
+                                }
+                            }
+                        }
                     }
                 }
-            }
+            }    
         }
+            
     }
 
 

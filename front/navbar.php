@@ -12,7 +12,7 @@ echo '<div class="navbar">';
             <button class="nav-b">icon</button></a>';
     echo '<a href="shop/cart.php">
             <button class="nav-b">cart</button></a>';
-    if (@$_SESSION['username']){
+    if (@$_SESSION['id']){
         echo '<a href="auth/logout.php">
             <button class="nav-b">logout</button></a>
         ';

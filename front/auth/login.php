@@ -3,9 +3,10 @@
         log in
     </h1>
 <form action="login.php" method="POST">
-    username/email:   <input type="text" name="userOrEmail">
-    password: <input type="password" name="password">
-    <input type="submit" value="log in">
+    username/email:<br>   <input type="text" name="userOrEmail">
+    <br>password: <br><input type="password" name="password">
+    <br>
+    <input type="submit" name="submit" value="log in">
 </form>
 </div>
 
@@ -23,7 +24,8 @@
 <?php
 
 $extPATH = "../../grasPHP/";
-require("smartReqFUN.php");
+require("../../connect.php");
+require($extPATH . "smartReqFUN.php");
 requireALL($extPATH);
 
 if (isset($_POST['submit'])){
@@ -31,6 +33,7 @@ if (isset($_POST['submit'])){
     $userOrEmail = @$_POST['userOrEmail'];
     $password = @$_POST['password'];
     $foundWith = "none";
+
     //looking for email/username in database
     if (validateEmail($userOrEmail)){
         $loginRESULT =$conn ->query( QselectAllByEmail($userOrEmail));
@@ -41,8 +44,8 @@ if (isset($_POST['submit'])){
             jsLog("not found this email address");
         }
     }else{
-        $loginRESULT =$conn ->query( QselectAllByUsername($userOrEmail));
-        if ($loginRESULT == 1){
+        $loginRESULT = $conn ->query( QselectAllByUsername($userOrEmail));
+        if ($loginRESULT -> num_rows == 1){
             jsLog("found with username");
             $foundWith = "username";
         }else{
@@ -50,8 +53,14 @@ if (isset($_POST['submit'])){
         }
     }
 
-    //TODO DO THIS CORRECTLY!!!!!!!!!!!!!!!!!!;;;
+    $selectInsertedUser = $conn->query(QselectAllByUsername($userOrEmail));
 
+    if ($selectInsertedUser->num_rows == 1) {
+        while($row = $selectInsertedUser->fetch_assoc()) { 
+            $_SESSION["id"] = $row["id"]; 
+            header("location: ../home.php");
+        }
+    }
     
 }
 
