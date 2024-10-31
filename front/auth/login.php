@@ -1,3 +1,7 @@
+<?php
+require("../backButton.php")
+?>
+
 <div class="login">
     <h1>
         log in
