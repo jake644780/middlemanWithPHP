@@ -1,5 +1,4 @@
 <?php
-require("../backButton.php")
 ?>
 
 <div class="login">
@@ -57,10 +56,10 @@ if (isset($_POST['submit'])){
         }
     }
 
-    $selectInsertedUser = $conn->query(QselectAllByUsername($userOrEmail));
+    $selectInsertedUserRESULT = $conn->query(QselectAllByUsername($userOrEmail));
 
-    if ($selectInsertedUser->num_rows == 1) {
-        while($row = $selectInsertedUser->fetch_assoc()) { 
+    if ($selectInsertedUserRESULT->num_rows == 1) {
+        while($row = $selectInsertedUserRESULT->fetch_assoc()) { 
             $_SESSION["id"] = $row["id"]; 
             header("location: ../home.php");
         }

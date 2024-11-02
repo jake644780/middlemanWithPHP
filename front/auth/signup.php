@@ -82,10 +82,10 @@ requireALL($extPATH);
                         if ($insertUser_RESULT){
                             jsLog("successfully registered user"); //frontend this
                             //getting id of user just inserted
-                            $selectInsertedUser = $conn -> query(QselectAllByUsername($data["username"]));
+                            $selectInsertedUserRESULT = $conn -> query(QselectAllByUsername($data["username"]));
     
-                            if ($selectInsertedUser->num_rows == 1) {
-                                while($row = $selectInsertedUser->fetch_assoc()) { 
+                            if ($selectInsertedUserRESULT->num_rows == 1) {
+                                while($row = $selectInsertedUserRESULT->fetch_assoc()) { 
                                     $_SESSION["id"] = $row["id"]; 
                                     header("location: ../home.php");
                                 }

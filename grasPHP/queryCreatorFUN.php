@@ -7,6 +7,10 @@ function QselectAllByUsername ($username){
 function QselectAllByEmail ($email){
     return "SELECT * FROM users WHERE email = '$email';";
 }
+
+function QselectAllByID ($ID){
+    return "SELECT * FROM users WHERE id = '$ID';";
+}
 function QinsertWithHash ($tableName, $data){
     $q = "INSERT INTO $tableName (";
     //inserting keys

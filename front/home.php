@@ -14,6 +14,7 @@
 
     include("navbar.php");
 
+    printBackButton();
     //TODO frontend
 ?>
 
