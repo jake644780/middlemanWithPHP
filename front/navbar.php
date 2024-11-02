@@ -1,5 +1,18 @@
 <?php
 
+
+
+
+$selectUser = $conn -> query(QselectAllByID($_SESSION['id']));
+if ($selectUser -> num_rows > 0){
+    while ($row = $selectUser -> fetch_assoc()){
+        $sessionUser = $row["username"];
+    }
+}else{
+    $sessionUser = "";
+}
+
+
 echo '<div class="navbar">';
 
     echo '<a href="#">
@@ -17,8 +30,9 @@ echo '<div class="navbar">';
             <button class="nav-b">logout</button></a>
         ';
         echo '<a href="auth/profile.php">    
-            <button class="nav-b">my profile</button></a>
+            <button class="nav-b">' . $sessionUser . '</button></a>
         ';
+
     }else{
         echo '<a href="auth/login.php">
             <button class="nav-b">log in</button></a>   
@@ -30,10 +44,12 @@ echo '<div class="navbar">';
     echo '</div>';
 
 
+
+    //5 5 13 1 5 5 5
     echo    '<style>
     .navbar{
         display: grid;
-        grid-template-columns: 150px 150px auto 50px 150px 150px 150px;
+        grid-template-columns: 5fr 5fr 13fr 1fr 5fr 5fr 5fr;
         grid-template-rows: 50px;
     }
     .nav-b{
@@ -46,6 +62,9 @@ echo '<div class="navbar">';
         padding: 0;
         background-color: #fff;
         font-size: 150%;
+        white-space: nowrap;   /* Prevent line breaks */
+        overflow: hidden;      /* Hide overflow content */
+        text-overflow: ellipsis; /* Add ellipsis for overflow text (optional) */
     }
     .navbar a{
         text-decoration: none;
@@ -56,6 +75,12 @@ echo '<div class="navbar">';
 
 
 </style>';
+
+resizeTextOnOverflow("nav-b");
+
+
+
+
 ?>
         
         

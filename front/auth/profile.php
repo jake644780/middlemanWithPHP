@@ -9,6 +9,8 @@ requireALL($extPATH);
 
 $sessionUserRESULT = $conn->query(QselectAllByID($_SESSION['id']));
 
+require("../../front/navbar.php");
+
 if ($sessionUserRESULT->num_rows > 0){
     while ($rows = $sessionUserRESULT->fetch_assoc()){
         echo $rows["username"];
@@ -19,3 +21,10 @@ if ($sessionUserRESULT->num_rows > 0){
 }
 
 ?>
+
+
+<style>
+    body{
+        margin: 2px;
+    }
+</style>
