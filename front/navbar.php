@@ -2,7 +2,8 @@
 
 
 
-
+if (isset($_SESSION["id"])){
+    
 $selectUser = $conn -> query(QselectAllByID($_SESSION['id']));
 if ($selectUser -> num_rows > 0){
     while ($row = $selectUser -> fetch_assoc()){
@@ -12,6 +13,9 @@ if ($selectUser -> num_rows > 0){
     $sessionUser = "";
 }
 
+}else{
+    jsLog("not logged in!");
+}
 
 echo '<div class="navbar">';
 
