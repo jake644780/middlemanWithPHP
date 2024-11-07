@@ -22,13 +22,6 @@ printBackButton();
 <?php
 
 
-    /*
-TODO
-finish addproduct
-separate addproduct and addimage
-
-*/
-
 
 if (isset($_POST["submit"])){
     $productOK = 1;
