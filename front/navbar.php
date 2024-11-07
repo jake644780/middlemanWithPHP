@@ -21,7 +21,7 @@ echo '<div class="navbar">';
 
     echo '<a href="#">
             <button class="nav-b">home</button></a>';
-    echo '<a href="shop/home.php">
+    echo '<a href="shop/shopHome.php">
             <button class="nav-b">shop</button></a>';
     echo '<a href="">
             <button class="nav-b">place of searchbar</button></a>';
