@@ -1,0 +1,7 @@
+TODO
+-navbar fix links (most likely with a list);
+-browse items;
+-cart;
+-starting frontend at places;
+-unite grasPHP;
+-backbutton;

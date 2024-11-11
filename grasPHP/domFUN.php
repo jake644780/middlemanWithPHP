@@ -18,7 +18,6 @@ function printBackButton(){
 </style>';
 }
 //this always goes back. we need it to go up absolutely!!!
-//TODO fix back button!
 
 function resizeTextOnOverflow($className) {
     echo "

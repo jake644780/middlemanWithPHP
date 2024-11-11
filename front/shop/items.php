@@ -42,6 +42,5 @@ if ($selectProduct->num_rows == 0){
 
 
 }
-
-
 ?>
+
