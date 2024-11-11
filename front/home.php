@@ -13,7 +13,7 @@
 
     require($extPATH . "grasPHP.php");
 
-    include("navbar.php");
+    require("components/navbar.php");
 
     printBackButton();
     ?>

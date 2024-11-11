@@ -2,7 +2,7 @@
 $extPATH = "../../";
 require($extPATH . "grasPHP.php");
 
-require("../navbar.php");
+require("../components/navbar.php");
 
 session_start();
 sessionCheck();

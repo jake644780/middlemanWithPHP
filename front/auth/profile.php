@@ -8,7 +8,7 @@ require($extPATH . "grasPHP.php");
 
 $sessionUserRESULT = $conn->query(QselectAllByID($_SESSION['id']));
 
-require("../../front/navbar.php");
+require("../../front/components/navbar.php");
 
 if ($sessionUserRESULT->num_rows > 0) {
     while ($rows = $sessionUserRESULT->fetch_assoc()) {
