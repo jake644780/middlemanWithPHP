@@ -1,6 +1,5 @@
 <?php
-$extPATH = "../../";
-require($extPATH . "grasPHP.php");
+require("../../grasPHP.php");
 
 require("../components/navbar.php");
 

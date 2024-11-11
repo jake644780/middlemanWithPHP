@@ -2,9 +2,7 @@
 
 session_start();
 
-$extPATH = "../../";
-
-require($extPATH . "grasPHP.php");
+require("../../grasPHP.php");
 
 $sessionUserRESULT = $conn->query(QselectAllByID($_SESSION['id']));
 

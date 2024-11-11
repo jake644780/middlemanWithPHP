@@ -1,6 +1,7 @@
 TODO
 -navbar fix links (most likely with a list);
--browse items;
+-browse items page;
 -cart;
 -starting frontend at places;
 -backbutton;
+-injection protection

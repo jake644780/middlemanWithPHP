@@ -3,19 +3,13 @@
 
 
 if (isset($_SESSION["id"])){
-    
-$selectUser = $conn -> query(QselectAllByID($_SESSION['id']));
-if ($selectUser -> num_rows > 0){
-    while ($row = $selectUser -> fetch_assoc()){
-        $sessionUser = $row["username"];
-    }
-}else{
-    $sessionUser = "";
-}
+    $selectUser = $conn -> query(QselectAllByID($_SESSION['id']));
+    if ($selectUser -> num_rows > 0) while ($row = $selectUser -> fetch_assoc()) $sessionUser = $row["username"];
+    else $sessionUser = "";
 
-}else{
-    jsLog("not logged in!");
-}
+}else jsLog("not logged in!");
+
+
 
 echo '<div class="navbar">';
 
@@ -46,11 +40,10 @@ echo '<div class="navbar">';
         ';
     }   
     echo '</div>';
-
-
-
     //5 5 13 1 5 5 5
-    echo    '<style>
+resizeTextOnOverflow("nav-b");
+?>
+<style>
         .navbar{
             display: grid;
             grid-template-columns: 5fr 5fr 13fr 5fr 5fr 5fr;
@@ -89,21 +82,17 @@ echo '<div class="navbar">';
 
         input[type="text"] {
             outline: none;
+            background-color: white;
+
         }
 
         input[type="text"]:focus {
             outline: none;
+            background-color: white;
         }
 
 
         
 
         
-    </style>';
-
-resizeTextOnOverflow("nav-b");
-
-
-
-
-?>
+    </style>

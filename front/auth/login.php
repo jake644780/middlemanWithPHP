@@ -25,11 +25,9 @@
 
 <?php
 
-$extPATH = "../../";
+require("../../grasPHP.php");
 
-require($extPATH . "grasPHP.php");
-
-if (isset($_POST['submit'])) {
+if (isset($_POST["submit"])) {
     session_start();
     $userOrEmail = @$_POST['userOrEmail'];
     $password = @$_POST['password'];

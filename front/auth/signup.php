@@ -1,8 +1,7 @@
 <?php
-//require paths        
-$extPATH = "../../";
 
-require($extPATH . "grasPHP.php");
+session_start();
+require("../../grasPHP.php");
 ?>
 
 <html>
@@ -48,7 +47,6 @@ require($extPATH . "grasPHP.php");
 
 <?php
 
-session_start();
 
 if (isset($_POST['submit'])) {
     //grabbing data from form
