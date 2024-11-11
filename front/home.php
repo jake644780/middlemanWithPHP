@@ -1,26 +1,28 @@
 <html>
-    <head>
-        <title>middleman</title>        
-    </head>
+
+<head>
+    <title>middleman</title>
+</head>
+
 <body>
 
-<?php
+    <?php
 
     session_start();
     $extPATH = "../";
-    require($extPATH . "connect.php");
+
     require($extPATH . "grasPHP.php");
 
     include("navbar.php");
 
     printBackButton();
-?>
+    ?>
 
-   
-     
+
+
 </body>
 <style>
-    body{
+    body {
         margin: 2px;
     }
 </style>

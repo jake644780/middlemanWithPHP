@@ -1,5 +1,12 @@
 <?php
 
+
+$conn = new mysqli("localhost", "admin", "Database1", "middlemanwithphp"); 
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 function checkPass($password) {
     $len = strlen($password) >= 8 && strlen($password) <= 40 ? 1 : 0;
     $cap = preg_match('/[A-Z]/', $password) ? 1 : 0;

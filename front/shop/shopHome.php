@@ -1,7 +1,7 @@
 <?php
 $extPATH = "../../";
 require($extPATH . "grasPHP.php");
-require($extPATH . "connect.php");
+
 require("../navbar.php");
 
 session_start();
@@ -22,14 +22,16 @@ printBackButton();
 
 <?php
 
-class Product {
+class Product
+{
     public $id;
     public $name;
     public $price;
     public $stock;
     public $description;
 
-    public function __construct($id, $name, $price, $stock, $description){
+    public function __construct($id, $name, $price, $stock, $description)
+    {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
@@ -37,30 +39,31 @@ class Product {
         $this->description = $description;
     }
 
-    public function getDetails(){
-        return $this->id . ": " . $this->name . "<br>" . "price: " . $this->price . "<br>" . "stock: " . $this->stock . "<br>" . "description: " . $this->description . "<br>" ;
+    public function getDetails()
+    {
+        return $this->id . ": " . $this->name . "<br>" . "price: " . $this->price . "<br>" . "stock: " . $this->stock . "<br>" . "description: " . $this->description . "<br>";
     }
 }
 
-$selectAllProducts = $conn -> query("SELECT * FROM products");
+$selectAllProducts = $conn->query("SELECT * FROM products");
 
 $posts = [];
 
-if ($selectAllProducts -> num_rows > 0){
-    while ($row = $selectAllProducts -> fetch_assoc()){
+if ($selectAllProducts->num_rows > 0) {
+    while ($row = $selectAllProducts->fetch_assoc()) {
         $posts[] = new Product($row["id"], $row["name"], $row["price"], $row["stock"], $row["description"]);
     }
 }
 
-for ($i = 0; $i < count($posts); $i++){
+for ($i = 0; $i < count($posts); $i++) {
     $itemID = $posts[$i]->id;
     echo '<a href="items.php?itemID=' . $itemID . '"><button>';
     echo '<div class="item">';
     echo $posts[$i]->getDetails();
     $qq = "SELECT * FROM images WHERE parentId = '" . $posts[$i]->id . "'";
-    $selectAllImages = $conn -> query($qq);
-    if ($selectAllImages -> num_rows > 0){
-        while ($row = $selectAllImages -> fetch_assoc()){
+    $selectAllImages = $conn->query($qq);
+    if ($selectAllImages->num_rows > 0) {
+        while ($row = $selectAllImages->fetch_assoc()) {
             $imgPATH = $row["path"];
             echo '<img src="' . $imgPATH . '" alt="">';
         }
@@ -76,8 +79,7 @@ for ($i = 0; $i < count($posts); $i++){
 ?>
 
 <style>
-
-    .item{
+    .item {
         border: 2px black solid;
         display: flex;
     }

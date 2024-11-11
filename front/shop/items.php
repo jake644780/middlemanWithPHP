@@ -3,7 +3,7 @@ session_start();
 
 $extPATH = "../../";
 
-require($extPATH . "connect.php");
+
 require($extPATH . "grasPHP.php");
 
 $selectProduct = $conn->query(QselectAllBy("products", "id", $_GET["itemID"]));

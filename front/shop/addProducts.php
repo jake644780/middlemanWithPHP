@@ -1,7 +1,7 @@
 <?php
 $extPATH = "../../";
 require($extPATH . "grasPHP.php");
-require($extPATH . "connect.php");
+
 
 session_start();
 sessionCheck();
@@ -23,61 +23,61 @@ printBackButton();
 
 
 
-if (isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
     $productOK = 1;
     $faulty = ["problematic fields" => "bad value"];
     $faulty["imageExt"] = "";
     //id
     $productData = ["id" => "",];
     //name check
-    if (!(strlen(@$_POST["name"]) === 0)){
+    if (!(strlen(@$_POST["name"]) === 0)) {
         $productData["name"] =  @$_POST["name"];
-    }else{
+    } else {
         jsLog("name can't be nothing");
         $productOK = 0;
         $faulty["name"] = @$_POST["name"];
     }
     //price check
-    if (@$_POST["price"] > 0){
+    if (@$_POST["price"] > 0) {
         jsLog("product costs fine");
         $productData["price"] = @$_POST["price"];
-    }else{
+    } else {
         jsLog(@$_POST["price"] . " is not an acceptable value...");
         $productOK = 0;
         $faulty["price"] = @$_POST["price"];
     }
     //stock check
-    if (@$_POST["stock"] > 0 && is_numeric(@$_POST["stock"])){
+    if (@$_POST["stock"] > 0 && is_numeric(@$_POST["stock"])) {
         jsLog("stock is fine");
         $productData["stock"] = @$_POST["stock"];
-    }else{
+    } else {
         jsLog(@$_POST["stock"] . " is not an acceptable value...");
         $productOK = 0;
         $faulty["stock"] = @$_POST["stock"];
     }
     //description
     $productData["description"] = @$_POST["description"];
-    
-     //inserting into db
-    if ($productOK){
+
+    //inserting into db
+    if ($productOK) {
         $insertProduct = $conn->query(QinsertWithHash("products", $productData));
         jsLog("successfully inserted item " . $productData["name"]);
-    }else{
+    } else {
         jsLog("product cannot be inserted into db");
     }
     $productName = @$_POST["name"];
     $selectUploadedProduct = $conn->query("SELECT * FROM products WHERE name = '" . $productName . "'");
-    while ($rows = $selectUploadedProduct->fetch_assoc()){
+    while ($rows = $selectUploadedProduct->fetch_assoc()) {
         $insertedProductID = $rows["id"];
     }
 
-    
+
     //image uploads
     $target_dir = "uploads/";
     $imageOk = 1;
     $images = [];
-    if ($productOK){
-        foreach ($_FILES["images"]["tmp_name"] as $key => $tmp_name){
+    if ($productOK) {
+        foreach ($_FILES["images"]["tmp_name"] as $key => $tmp_name) {
             //unique name
             $fileID = 0;
             $ogFileName = basename($_FILES["images"]["name"][$key]);
@@ -86,22 +86,22 @@ if (isset($_POST["submit"])){
             $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             // Check if file is a valid format
             $validFormats = ["jpg", "png", "jpeg", "gif"];
-            if (in_array($fileType, $validFormats)){
+            if (in_array($fileType, $validFormats)) {
                 jsLog("file: " . $_FILES["images"]["name"][$key] . " is acceptable file format");
-            }else{
-                jsLog("file: " . $_FILES["images"]["name"][$key] . " is not acceptable file format");   
+            } else {
+                jsLog("file: " . $_FILES["images"]["name"][$key] . " is not acceptable file format");
                 $imageOk = 0;
                 $faulty["imageExt"] .= $_FILES["images"]["name"][$key] . ", ";
             }
             //file size
-            if ($_FILES["images"]["size"][$key] <= 5000000){
-                jsLog("file " . $_FILES["images"]["name"][$key] . " is an acceptable size");            
-            }else{
+            if ($_FILES["images"]["size"][$key] <= 5000000) {
+                jsLog("file " . $_FILES["images"]["name"][$key] . " is an acceptable size");
+            } else {
                 jsLog("Sorry, your file is too large: " . $_FILES["images"]["name"][$key]);
                 $imageOK = 0;
                 $faulty["imageSize"] .= $_FILES["images"]["name"][$key] . ", ";
             }
-            if (move_uploaded_file($tmp_name, $target_file)){
+            if (move_uploaded_file($tmp_name, $target_file)) {
                 jsLog("successfully added image");
                 $imageData = [
                     "id" => "",
@@ -110,11 +110,8 @@ if (isset($_POST["submit"])){
                 ];
                 $insertImage = $conn->query(QinsertWithHash("images", $imageData));
             }
-
         }
     }
-
-
 }
 
 ?>
