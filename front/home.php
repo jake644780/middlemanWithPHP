@@ -7,10 +7,9 @@
 <?php
 
     session_start();
-    $extPATH = "../grasPHP/";
-    include("../connect.php");
-    require($extPATH . "smartReqFUN.php");
-    requireALL($extPATH);
+    $extPATH = "../";
+    require($extPATH . "connect.php");
+    require($extPATH . "grasPHP.php");
 
     include("navbar.php");
 

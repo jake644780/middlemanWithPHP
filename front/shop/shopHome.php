@@ -1,9 +1,9 @@
 <?php
-$importPATH = "../../grasPHP/";
-require($importPATH . "smartReqFUN.php");
-requireALL($importPATH);
-require("../../connect.php");
+$extPATH = "../../";
+require($extPATH . "grasPHP.php");
+require($extPATH . "connect.php");
 require("../navbar.php");
+
 session_start();
 sessionCheck();
 

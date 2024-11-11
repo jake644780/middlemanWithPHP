@@ -26,10 +26,9 @@
 
 <?php
 
-$extPATH = "../../grasPHP/";
-require("../../connect.php");
-require($extPATH . "smartReqFUN.php");
-requireALL($extPATH);
+$extPATH = "../../";
+require($extPATH . "connect.php");
+require($extPATH . "grasPHP.php");
 
 if (isset($_POST['submit'])){
     session_start();

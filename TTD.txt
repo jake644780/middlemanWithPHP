@@ -3,5 +3,4 @@ TODO
 -browse items;
 -cart;
 -starting frontend at places;
--unite grasPHP;
 -backbutton;

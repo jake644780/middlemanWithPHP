@@ -1,9 +1,8 @@
 <?php
 //require paths        
-$extPATH = "../../grasPHP/";
-require($extPATH . "smartReqFUN.php");
-require("../../connect.php");
-requireALL($extPATH);
+$extPATH = "../../";
+require($extPATH . "connect.php");
+require($extPATH . "grasPHP.php");
 ?>
 
 <html>
