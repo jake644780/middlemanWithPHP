@@ -53,6 +53,9 @@ if ($selectAllProducts -> num_rows > 0){
 }
 
 for ($i = 0; $i < count($posts); $i++){
+    $itemID = $posts[$i]->id;
+    echo '<a href="items.php?itemID=' . $itemID . '"><button>';
+    echo '<div class="item">';
     echo $posts[$i]->getDetails();
     $qq = "SELECT * FROM images WHERE parentId = '" . $posts[$i]->id . "'";
     $selectAllImages = $conn -> query($qq);
@@ -62,6 +65,8 @@ for ($i = 0; $i < count($posts); $i++){
             echo '<img src="' . $imgPATH . '" alt="">';
         }
     }
+    echo '</div>';
+    echo "</button></a>";
 
     echo "<br><br>";
 }
@@ -70,3 +75,11 @@ for ($i = 0; $i < count($posts); $i++){
 
 ?>
 
+<style>
+
+    .item{
+        border: 2px black solid;
+        display: flex;
+    }
+</style>
+</a>

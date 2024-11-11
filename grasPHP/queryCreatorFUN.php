@@ -10,7 +10,14 @@ function QselectAllByEmail ($email){
 
 function QselectAllByID ($ID){
     return "SELECT * FROM users WHERE id = '$ID';";
-}function QinsertWithHash ($tableName, $data){
+}
+
+function QselectAllBy ($tableName, $key, $value){
+    return "SELECT * FROM " . $tableName . " WHERE " . $key . " = '" . $value . "';";
+}
+
+
+function QinsertWithHash ($tableName, $data){
     $q = "INSERT INTO $tableName (";
     // Inserting keys
     foreach ($data as $key => $value){
