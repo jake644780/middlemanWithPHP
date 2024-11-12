@@ -28,22 +28,6 @@ function sessionCheck(){
 function validateEmail($email){
     return preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) ? 1 : 0;
 }
-//this always goes back. we need it to go up absolutely!!!
-function printBackButton(){
-    $previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'default_page.php';
-
-    echo '<button onclick="window.location.href=\'' . $previousPage . '\' " class="backbutton">Go Back</button>';
-
-    echo '<style>
-    .backbutton{
-        border: none;
-        background-color: transparent;
-    }
-    .backbutton:hover{
-        background-color: transparent;
-    }
-    </style>';
-}
 function resizeTextOnOverflow($className){
     echo "<script>
     const adjustFontSize = () => {

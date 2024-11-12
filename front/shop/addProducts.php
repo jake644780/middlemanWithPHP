@@ -5,7 +5,6 @@ require("../../grasPHP.php");
 session_start();
 sessionCheck();
 
-printBackButton();
 
 ?>
 <form action="addProducts.php" method="POST" class="itemupload" enctype="multipart/form-data">

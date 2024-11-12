@@ -9,35 +9,34 @@ if (isset($_SESSION["id"])) {
 } else jsLog("not logged in!");
 
 
-
 echo '<div class="navbar">';
 
-echo '<a href="#">
+echo '<a href="'.$home.'">
             <button class="nav-b">home</button></a>';
-echo '<a href="shop/shopHome.php">
+echo '<a href="'.$shopHome.'">
             <button class="nav-b">shop</button></a>';
-
-echo '<form class="nav-s" action="browseItems.php" method="GET">
+echo '<form class="nav-s" action="'.$search.'" method="GET">
         <input class="search" type="text" name="search" placeholder="search for..." required>
         </form>';
-echo '<a href="shop/cart.php">
+echo '<a href="'.$cart.'">
             <button class="nav-b">cart</button></a>';
 if (@$_SESSION['id']) {
-    echo '<a href="auth/logout.php">
+    echo '<a href="'.$logout.'">
             <button class="nav-b">logout</button></a>
         ';
-    echo '<a href="auth/profile.php">    
+    echo '<a href="'.$profile.'">    
             <button class="nav-b">' . $sessionUser . '</button></a>
         ';
 } else {
-    echo '<a href="auth/login.php">
+    echo '<a href="'.$login.'">
             <button class="nav-b">log in</button></a>   
         ';
-    echo '<a href="auth/signup.php">
+    echo '<a href="'.$signup.'">
             <button class="nav-b">sign up</button></a>
         ';
 }
 echo '</div>';
+
 //5 5 13 1 5 5 5
 resizeTextOnOverflow("nav-b");
 ?>
