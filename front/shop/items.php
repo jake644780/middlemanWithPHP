@@ -3,7 +3,7 @@ session_start();
 
 require("../../grasPHP.php");
 
-$selectProduct = $conn->query(QselectAllBy("products", "id", $_GET["itemID"]));
+$selectProduct = $conn->query(QselectAllBy("products", "id", $_GET["itemid"]));
 
 if ($selectProduct->num_rows == 0) {
     jsLog("sorry, no product with this name");
@@ -24,7 +24,7 @@ if ($selectProduct->num_rows == 0) {
 
 
 
-        $selectAllImages = $conn->query(QselectAllBy("images", "parentId", $row["id"]));
+        $selectAllImages = $conn->query(QselectAllBy("images", "parentid", $row["id"]));
 
         if ($selectAllImages->num_rows > 0) {
             while ($row2 = $selectAllImages->fetch_assoc()) {

@@ -55,11 +55,11 @@ if ($selectAllProducts->num_rows > 0) {
 }
 
 for ($i = 0; $i < count($posts); $i++) {
-    $itemID = $posts[$i]->id;
-    echo '<a href="items.php?itemID=' . $itemID . '"><button>';
+    $itemid = $posts[$i]->id;
+    echo '<a href="items.php?itemid=' . $itemid . '"><button>';
     echo '<div class="item">';
     echo $posts[$i]->getDetails();
-    $qq = "SELECT * FROM images WHERE parentId = '" . $posts[$i]->id . "'";
+    $qq = "SELECT * FROM images WHERE parentid = '" . $posts[$i]->id . "'";
     $selectAllImages = $conn->query($qq);
     if ($selectAllImages->num_rows > 0) {
         while ($row = $selectAllImages->fetch_assoc()) {

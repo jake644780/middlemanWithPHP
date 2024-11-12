@@ -67,7 +67,7 @@ if (isset($_POST["submit"])) {
     $productName = @$_POST["name"];
     $selectUploadedProduct = $conn->query("SELECT * FROM products WHERE name = '" . $productName . "'");
     while ($rows = $selectUploadedProduct->fetch_assoc()) {
-        $insertedProductID = $rows["id"];
+        $insertedProductid = $rows["id"];
     }
 
 
@@ -78,10 +78,10 @@ if (isset($_POST["submit"])) {
     if ($productOK) {
         foreach ($_FILES["images"]["tmp_name"] as $key => $tmp_name) {
             //unique name
-            $fileID = 0;
+            $fileid = 0;
             $ogFileName = basename($_FILES["images"]["name"][$key]);
-            while (file_exists($target_dir . $ogFileName . $fileID)) $fileID++;
-            $target_file = $target_dir . $fileID . $ogFileName;
+            while (file_exists($target_dir . $ogFileName . $fileid)) $fileid++;
+            $target_file = $target_dir . $fileid . $ogFileName;
             $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             // Check if file is a valid format
             $validFormats = ["jpg", "png", "jpeg", "gif"];
@@ -104,7 +104,7 @@ if (isset($_POST["submit"])) {
                 jsLog("successfully added image");
                 $imageData = [
                     "id" => "",
-                    "parentId" => $insertedProductID,
+                    "parentid" => $insertedProductid,
                     "path" => $target_file
                 ];
                 $insertImage = $conn->query(QinsertWithHash("images", $imageData));

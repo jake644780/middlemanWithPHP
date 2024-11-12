@@ -4,7 +4,7 @@ session_start();
 
 require("../../grasPHP.php");
 
-$sessionUserRESULT = $conn->query(QselectAllByID($_SESSION['id']));
+$sessionUserRESULT = $conn->query(QselectAllByid($_SESSION['id']));
 
 require("../../front/components/navbar.php");
 

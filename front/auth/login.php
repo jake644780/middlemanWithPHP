@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
 
     //looking for email/username in database
     if (validateEmail($userOrEmail)) {
-        $loginRESULT = $conn->query(QselectAllByEmail($userOrEmail));
+        $loginRESULT = $conn->query(QselectAllByEmail("users",$userOrEmail));
         if ($loginRESULT == 1) {
             jsLog("found with email");
             $foundWith = "email";
@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
             jsLog("not found this email address");
         }
     } else {
-        $loginRESULT = $conn->query(QselectAllByUsername($userOrEmail));
+        $loginRESULT = $conn->query(QselectAllByUsername("users", $userOrEmail));
         if ($loginRESULT->num_rows == 1) {
             jsLog("found with username");
             $foundWith = "username";
@@ -52,7 +52,7 @@ if (isset($_POST["submit"])) {
         }
     }
 
-    $selectInsertedUserRESULT = $conn->query(QselectAllByUsername($userOrEmail));
+    $selectInsertedUserRESULT = $conn->query(QselectAllByUsername("users", $userOrEmail));
 
     if ($selectInsertedUserRESULT->num_rows == 1) {
         while ($row = $selectInsertedUserRESULT->fetch_assoc()) {

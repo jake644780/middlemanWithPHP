@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                 jsLog("password does not match!"); // frontend this
             } else {
                 //checking if user is already present in db
-                $isUserInDB_RESULT = $conn->query(QselectAllByUsername($data["username"]));
+                $isUserInDB_RESULT = $conn->query(QselectAllByUsername("users", $data["username"]));
 
                 if ($isUserInDB_RESULT->num_rows != 0) {
                     jsLog("user with this username already exists"); //frontend this
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                     if ($insertUser_RESULT) {
                         jsLog("successfully registered user"); //frontend this
                         //getting id of user just inserted
-                        $selectInsertedUserRESULT = $conn->query(QselectAllByUsername($data["username"]));
+                        $selectInsertedUserRESULT = $conn->query(QselectAllByUsername("users", $data["username"]));
 
                         if ($selectInsertedUserRESULT->num_rows == 1) {
                             while ($row = $selectInsertedUserRESULT->fetch_assoc()) {
