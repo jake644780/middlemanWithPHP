@@ -3,7 +3,7 @@
 
 
 if (isset($_SESSION["id"])) {
-    $selectUser = $conn->query(QselectAllByid($_SESSION['id']));
+    $selectUser = $conn->query(QselectAllByid("users",$_SESSION['id']));
     if ($selectUser->num_rows > 0) while ($row = $selectUser->fetch_assoc()) $sessionUser = $row["username"];
     else $sessionUser = "";
 } else jsLog("not logged in!");
